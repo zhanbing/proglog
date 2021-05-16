@@ -18,7 +18,7 @@ func TestIndex(t *testing.T) {
 	c.Segment.MaxIndexBytes = 1024
 	idx, err := newIndex(f, c)
 	require.NoError(t, err)
-	_, _, err := idx.Read(-1)
+	_, _, err = idx.Read(-1)
 	require.NoError(t, err)
 	require.Equal(t, f.Name(), idx.Name())
 
@@ -32,7 +32,7 @@ func TestIndex(t *testing.T) {
 
 	for _, want := range entries {
 		err = idx.Write(want.Off, want.Pos)
-		require.noError(t, err)
+		require.NoError(t, err)
 		_, pos, err := idx.Read(int64(want.Off))
 		require.NoError(t, err)
 		require.Equal(t, want.Pos, pos)

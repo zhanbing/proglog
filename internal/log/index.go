@@ -44,8 +44,8 @@ func newIndex(f *os.File, c Config) (*index, error) {
 	return idx, nil
 }
 
-func (i *index) Read(in int64) (out uint32, pos uint32, err error) {
-	if i.szie == 0 {
+func (i *index) Read(in int64) (out uint32, pos uint64, err error) {
+	if i.size == 0 {
 		return 0, 0, io.EOF
 	}
 	if in == -1 {
@@ -69,7 +69,7 @@ func (i *index) Write(off uint32, pos uint64) error {
 	}
 	enc.PutUint32(i.mmap[i.size:i.size+offWidth], off)
 	enc.PutUint64(i.mmap[i.size+offWidth:i.size+entWidth], pos)
-	i.size += uint64(endWdith)
+	i.size += uint64(entWidth)
 	return nil
 }
 
