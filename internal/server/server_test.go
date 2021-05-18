@@ -126,7 +126,7 @@ func testProduceConsumeStream(t *testing.T, client api.LogClient, config *Config
 	}}
 
 	{
-		stream, err := client.ProdcueStream(ctx)
+		stream, err := client.ProduceStream(ctx)
 		require.NoError(t, err)
 
 		for offset, record := range records {
