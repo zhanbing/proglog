@@ -41,7 +41,7 @@ test: $(CONFIG_PATH)/policy.csv $(CONFIG_PATH)/model.conf
 		go test -race ./...
 
 .PHONY: compile
-complie:
+compile:
 	protoc api/v1/*.proto \
 			--go_out=. \
 			--go-grpc_out=. \
